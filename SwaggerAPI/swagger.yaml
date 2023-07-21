@@ -1,0 +1,65 @@
+openapi: 3.0.0
+info:
+  title: User API
+  version: 1.0.0
+  description: API documentation for managing user data
+
+paths:
+  /api/users:
+    get:
+      summary: Get all users
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      summary: Create a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreateRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Unique identifier of the user
+        username:
+          type: string
+          description: Name of the user
+        email:
+          type: string
+          description: Email ID of the user
+        country:
+          type: string
+          description: Location country
+
+    UserCreateRequest:
+      type: object
+      properties:
+        username:
+          type: string
+          description: Name of the user
+        email:
+          type: string
+          description: Email ID of the user
+        country:
+          type: string
+          description: Location country
